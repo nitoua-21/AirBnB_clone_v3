@@ -5,6 +5,7 @@ import os
 from flask import Flask, make_response, jsonify
 from models import storage
 from api.v1.views import app_views
+from flask_cors import CORS
 
 # Declare environmental variables
 HOST = os.getenv('HBNB_API_HOST', '0.0.0.0')
@@ -12,6 +13,9 @@ PORT = os.getenv('HBNB_API_PORT', 5000)
 
 # Create an instance of flask
 app = Flask(__name__)
+
+# Initiate CORS
+CORS(app, origins='0.0.0.0')
 
 # Register the blueprint `app_views` to app
 app.register_blueprint(app_views)
