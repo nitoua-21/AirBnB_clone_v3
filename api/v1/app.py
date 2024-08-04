@@ -14,10 +14,10 @@ app = Flask(__name__)
 app.register_blueprint(app_views)
 
 @app.teardown_appcontext
-def teardown_storage():
+def teardown_storage(error):
     """Close DB session"""
     storage.close()
 
 if __name__ == "__main__":
     """Run Flask app"""
-    app.run(host=HOST, port=PORT)
+    app.run(host=HOST, port=PORT, debug=True)
