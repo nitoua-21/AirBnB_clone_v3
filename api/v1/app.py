@@ -2,7 +2,7 @@
 """Flask application entry point"""
 
 import os
-from flask import Flask
+from flask import Flask, make_response, jsonify
 from models import storage
 from api.v1.views import app_views
 
@@ -21,6 +21,11 @@ app.register_blueprint(app_views)
 def teardown_storage(error):
     """Close DB session"""
     storage.close()
+
+
+@app.errorhandler(404)
+def e_not_found(error):
+    return make_response(jsonify({"error": "Not found"}))
 
 
 if __name__ == "__main__":
