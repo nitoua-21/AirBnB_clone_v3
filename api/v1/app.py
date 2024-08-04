@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+"""Flask application entry point"""
+
 import os
 from flask import Flask
 from models import storage
